@@ -1,0 +1,16 @@
+.player-card {
+  border-radius: 20px;
+  width: 15em;
+  height: 10em;
+  text-align: center;
+  margin: auto;
+}
+
+.colour-dropdown {
+  width: 8em;
+  margin: auto;
+  margin-top: 1em;
+  background-color: #999;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
