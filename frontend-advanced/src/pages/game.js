@@ -1,7 +1,7 @@
 import { Container, Grid } from '@material-ui/core';
 import React from 'react';
 import { PlayerCard } from '../components/playerCard';
-import GameContext from '../context/gameContext';
+import { GameContextConsumer } from '../context/gameContext';
 
 export default function Game(props) {
   const centerStyle = {
@@ -23,15 +23,15 @@ export default function Game(props) {
       <Grid container spacing={2}>
         {Array.from(Array(4)).map((_, index) => (
           <Grid item xs={6}>
-            <GameContext.Consumer>
-              {(state) => (
+            <GameContextConsumer>
+              {(context) => (
                 <PlayerCard 
                   num={index + 1}
-                  colour={state.playerColours[index + 1]}
-                  changeColour={state.changePlayerColour}
+                  colour={context.state.playerColours[index + 1]}
+                  changeColour={context.changePlayerColour}
                 />
               )}
-            </GameContext.Consumer>
+            </GameContextConsumer>
           </Grid>
         ))}
       </Grid>

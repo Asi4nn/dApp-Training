@@ -1,43 +1,25 @@
 import React from 'react';
-import GameContext from './context/gameContext';
+import { GameContextProvider } from './context/gameContext';
 import Game from './pages/game';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      playerColours: {
-        1: "",
-        2: "",
-        3: "",
-        4: "",
-      },
-      changePlayerColour: (num, colour) => {
-        if (!Object.values(this.state.playerColours).includes(colour) || colour === "") {
-          this.setState(({ playerColours }) => ({
-            playerColours: {
-              ...playerColours,
-              [num]: colour
-            } 
-          })) 
-        }
-        else {
-          alert(colour + " is already taken");
-        }
-      }
-    }
+export default function App() {
+  return (
+    <Router>
 
-    
-  }  
+      <Switch>
+        <Route exact path="/">
+          <Redirect to="/game"></Redirect>
+        </Route>
 
-  render() {
-    return (
-      <GameContext.Provider value={this.state}>
-        <Game/>
-      </GameContext.Provider>
-    )
-  }
+        <Route path="/game">
+          <GameContextProvider>
+            <Game/>
+          </GameContextProvider>
+        </Route>
+      </Switch>
+
+    </Router>
+  )
 }
-
-export default App;
